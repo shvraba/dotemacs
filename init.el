@@ -33,6 +33,10 @@
   (require 'bind-key)                ;; if you use any :bind variant
   
 
+  ;; Prevent customization settings from appending junk to this file.
+  (setq custom-file "~/.emacs.d/custom.el")
+  (load custom-file :noerror)
+  
   ;; Keep all temporary files in system's $TMPDIR.  This reduces file clutter.
   (setq backup-directory-alist
 	`((".*" . ,temporary-file-directory)))
@@ -47,15 +51,3 @@
      (setq gc-cons-threshold 20000000)))) ; magnars' recommendation
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
