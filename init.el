@@ -10,6 +10,18 @@
 ;; NOTE: Some bogus, benign errors about packages/directories may be thrown due to this...
 (let ((file-name-handler-alist nil))
 
+  ;; Set up package.el for use with MELPA
+  (require 'package) ;; You might already have this line
+  (setq package-enable-at-startup nil) ; 
+  (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+		      (not (gnutls-available-p))))
+	 (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+    (add-to-list 'package-archives (cons "melpa" url) t))
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (package-initialize) ;; You might already have this line
+  
   ;; Keep all temporary files in system's $TMPDIR.  This reduces file clutter.
   (setq backup-directory-alist
 	`((".*" . ,temporary-file-directory)))
