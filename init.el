@@ -31,8 +31,11 @@
     (require 'use-package))
   (require 'diminish)                ;; if you use :diminish
   (require 'bind-key)                ;; if you use any :bind variant
-  
 
+  
+  (org-babel-load-file "~/.emacs.d/geoff.org")
+
+  
   ;; Prevent customization settings from appending junk to this file.
   (setq custom-file "~/.emacs.d/custom.el")
   (load custom-file :noerror)
